@@ -7,8 +7,9 @@ trie.insert("GA", 42);
 trie.insert("GA", 17);  // GATTACA à{42, 17}
 trie.insert("GA", 42);
 trie.insert("GC", 30);
-
-std::vector<int> Fish = trie.find("GA", true);
+trie.insert("GG", 100);
+trie.insert("AG", 1);
+std::vector<int> Fish = trie.find("GA", false);
 	return 0;
 }
 

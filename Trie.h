@@ -42,7 +42,7 @@ private:
 	Node* root; //Each Trie has a root, the pointer to the first empty node
 
 	//helper function for Find
-	std::vector<ValueType> finder(Trie<ValueType>::Node* cur, const int& charNumber, const std::string& key, bool exactMatchOnly) const;
+	std::vector<ValueType> finder(Trie<ValueType>::Node* cur, int charNumber, const std::string& key, bool exactMatchOnly) const;
 
 };
 
@@ -100,30 +100,12 @@ void Trie<ValueType>::insert(const std::string & key, const ValueType & value)
 
 
 
+
+
 template<typename ValueType>
-std::vector<ValueType> Trie<ValueType>::find(const std::string& key, bool exactMatchOnly) const
+ std::vector<ValueType> Trie<ValueType>::finder(Trie<ValueType>::Node* cur, int charNumber, const std::string & key, bool exactMatchOnly) const
 {
 	std::vector<ValueType> Result;
-	if (key != "")
-	{
-		for (int i = 0; i < root->Labels.size(); i++)
-		{
-			if (root->Labels[i] == key[0])
-			{
-				Result.push_back(finder(root->Branches[i], 1, key, exactMatchOnly)); //Recursive function should return final correct result
-			}
-		}
-	}
-
-	return Result;
-
-
-}
-
-template<typename ValueType>
- std::vector<ValueType> Trie<ValueType>::finder(Trie<ValueType>::Node* cur, const int& charNumber, const std::string & key, bool exactMatchOnly) const
-{
-	 std::vector<ValueType> Result;
 
 	 if (charNumber == key.size()) //Checks to see if node needs to be checked for values
 	 {
@@ -150,8 +132,31 @@ template<typename ValueType>
 		 }
 	 }
 
-	return Result;
+	return (Result);
 }
+
+
+ template<typename ValueType>
+ std::vector<ValueType> Trie<ValueType>::find(const std::string& key, bool exactMatchOnly) const
+ {
+	 std::vector<ValueType> Result;
+	 if (key != "")
+	 {
+		 for (int i = 0; i < root->Labels.size(); i++)
+		 {
+			 if (root->Labels[i] == key[0])
+			 {
+				 std::vector<ValueType> found = finder(root->Branches[i], 1, key, exactMatchOnly); //Recursive function should return final correct result
+				 Result.reserve(Result.size() + found.size());
+				 Result.insert(Result.end(), found.begin(), found.end());
+			 }
+		 }
+	 }
+
+	 return Result;
+
+
+ }
 
 
 
