@@ -14,11 +14,13 @@ public:
     bool findGenomesWithThisDNA(const string& fragment, int minimumLength, bool exactMatchOnly, vector<DNAMatch>& matches) const;
     bool findRelatedGenomes(const Genome& query, int fragmentMatchLength, bool exactMatchOnly, double matchPercentThreshold, vector<GenomeMatch>& results) const;
 private:
+
+	int m_MinSearchLength;
 };
 
 GenomeMatcherImpl::GenomeMatcherImpl(int minSearchLength)
 {
-    // This compiles, but may not be correct
+	m_MinSearchLength = minSearchLength;
 }
 
 void GenomeMatcherImpl::addGenome(const Genome& genome)
@@ -28,7 +30,7 @@ void GenomeMatcherImpl::addGenome(const Genome& genome)
 
 int GenomeMatcherImpl::minimumSearchLength() const
 {
-    return 0;  // This compiles, but may not be correct
+    return m_MinSearchLength;  
 }
 
 bool GenomeMatcherImpl::findGenomesWithThisDNA(const string& fragment, int minimumLength, bool exactMatchOnly, vector<DNAMatch>& matches) const

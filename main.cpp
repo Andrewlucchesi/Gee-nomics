@@ -1,4 +1,5 @@
-#include "Trie.h"
+/*#include "Trie.h"
+#include "provided.h"
 
 int main()
 {
@@ -10,10 +11,11 @@ trie.insert("GC", 30);
 trie.insert("GG", 100);
 trie.insert("AG", 1);
 std::vector<int> Fish = trie.find("GA", false);
+
 	return 0;
 }
+*/
 
-/*
 #include "provided.h"
 #include <iostream>
 #include <iomanip>
@@ -28,7 +30,7 @@ using namespace std;
 // directory that contains the genome data files we provide, e.g.,
 // "Z:/CS32/Geenomics/data" or "/Users/fred/cs32/Geenomics/data"
 
-const string PROVIDED_DIR = "../data";
+const string PROVIDED_DIR = "C:/Users/Andrew/source/repos/CS32/Gee-nomics/Geenomics/Geenomics/Gee-nomics/data";
 
 const string providedFiles[] = {
 	"Ferroplasma_acidarmanus.txt",
@@ -40,7 +42,7 @@ const string providedFiles[] = {
 	"Ferroglobus_placidus.txt",
 	"Desulfurococcus_mucosus.txt"
 };
-
+/*
 void createNewLibrary(GenomeMatcher*& library)
 {
 	cout << "Enter minimum search length (3-100): ";
@@ -83,7 +85,7 @@ void addOneGenomeManually(GenomeMatcher* library)
 		ch = toupper(ch);
 	library->addGenome(Genome(name, sequence));
 }
-
+*/
 bool loadFile(string filename, vector<Genome>& genomes)
 {
 	ifstream inputf(filename);
@@ -99,7 +101,7 @@ bool loadFile(string filename, vector<Genome>& genomes)
 	}
 	return true;
 }
-
+/*
 void loadOneDataFile(GenomeMatcher* library)
 {
 	string filename;
@@ -128,7 +130,7 @@ void loadProvidedFiles(GenomeMatcher* library)
 			for (const auto& g : genomes)
 				library->addGenome(g);
 			cout << "Loaded " << genomes.size() << " genomes from " << f << endl;
-		}
+		} 
 	}
 }
 
@@ -333,3 +335,13 @@ int main()
 }
 
 */
+
+int main()
+{
+
+
+	vector<Genome> Geenomes;
+	loadFile(PROVIDED_DIR + "/Halobacterium_jilantaiense.txt", Geenomes); //Tested for lowercase
+
+
+}
